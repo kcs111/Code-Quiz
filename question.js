@@ -1,5 +1,6 @@
+// quiz timer
 var timerEl = document.querySelector(".timer")
-// creating quiz
+// creating quiz timer
 var timerId
 //  The actual questions
 var questions = [
@@ -10,7 +11,7 @@ var questions = [
     new Questions("What is the smallest State in the U.S.?", ["New Jersey", "Delaware", "Washington D.C.", "Rhode Island"], "Rhode Island"),
 ];
 var quiz = new Quiz(questions);
-// The code work
+// 75 second timer
 var timer  =quiz.questions.length*15
 
 
@@ -47,7 +48,7 @@ Quiz.prototype.guess = function(answer) {
          showScores();
      }
      else {
-        //  Question shown
+        //  Question shown and Buttons
         
       var choices = quiz.getQuestionsIndex().choices;
 
@@ -68,10 +69,10 @@ Quiz.prototype.guess = function(answer) {
               
                 var answer= quiz.getQuestionsIndex().answer
                 if ( this.textContent === answer ) {
-                    alert("correct")
+                    alert("Correct")
                 }
                 else {
-                    alert("incorrect")
+                    alert("Incorrect")
                 }
               
                 quiz.guess()
@@ -121,6 +122,68 @@ function init (){
 // showing the quiz
 populate();
 }
+function gameOver(){
+    clearInterval(timerEl);
+    countdown() = "Finished";
+    displayScore();
+    savedScore ();
+}
+
+function displayScore () {
+    questionConEl.replaceWith(scorePageEl);
+    scoreAreaEl.innerText = "Final Score:" + score;
+     // Create an input element for initials 
+    initTextEl = document.createElement("input"); 
+    initTextEl.setAttribute("id", "initails-input"); 
+    initTextEl.setAttribute("type", "text"); 
+    initTextEl.setAttribute("name", "iniatials"); 
+    initTextEl.setAttribute("placeholder", "Enter Initials here"); 
+      
+    inNameEl.appendChild(initTextEl);
+
+
+    // create save button elemetn
+    saveButtonEl = document.createElement("button");
+    saveButtonEl.setAttribute("id" , "save-btn");
+    saveButtonEl.setAttribute("class" ,"save-btn");
+    saveButtonEl.setAttribute("type" , "submit");
+    saveButtonEl.textContent = "Save Score";
+
+    inNameEl.appendChild(saveButtonEl);
+
+    inNameEl.addEventListener("submit", viewHighScores);
+}
+
+function viewHighScores (e) { 
+  e.preventDefault();
+    var name = document.querySelector("#initails-input").value;
+    savedInit(name);
+    
+    scorePageEl.replaceWith(highScoreEl)
+    loadSaveScores();
+  
+}
+
+
+//function to save to local storage
+var savedScore = function() {
+    localStorage.setItem("score", JSON.stringify(score));
+}
+var savedInit = function(initails) {
+    localStorage.setItem("initails", JSON.stringify(initails));
+}
+
+// gets tasks from local storage load
+function loadSaveScores() {
+    var savedScore = localStorage.getItem("score");
+    var savedInit = localStorage.getItem("initails");
+
+    savedScore  = JSON.parse(savedScore);
+    savedInit = JSON.parse(savedInit);
+
+    document.getElementById("highScores").innerHTML = savedInit + " - " + savedScore;
+   
+}   
 
 init()
 
