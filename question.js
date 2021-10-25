@@ -1,4 +1,18 @@
+var timerEl = document.querySelector(".timer")
+// creating quiz
+var timerId
+//  The actual questions
+var questions = [
+    new Questions("What is the capital of Illinois?", ["Austin", "Chicago", "Springfield", "Norman"], "Springfield"),
+    new Questions("How many states are in the United States?", ["25", "50", "51", "13"], "50"),
+    new Questions("Which state has the highest population in the U.S.?", ["New York", "Texas", "Illinois", "California"], "California"),
+    new Questions("Which of the following was the last State to join the U.S.?", ["Alaska", "Hawai'i", "Puerto Rico", "Costa Rica"], "Alaska"),
+    new Questions("What is the smallest State in the U.S.?", ["New Jersey", "Delaware", "Washington D.C.", "Rhode Island"], "Rhode Island"),
+];
+var quiz = new Quiz(questions);
 // The code work
+var timer  =quiz.questions.length*15
+
 
 function Quiz(questions) {
     this.score = 0;
@@ -23,27 +37,60 @@ Quiz.prototype.guess = function(answer) {
      this.choices = choices;
      this.answer = answer;
  }
- Question.prototype.isCorrectAnswer = function(choice) {
+ Questions.prototype.isCorrectAnswer = function(choice) {
      return this.answer === choice;
  }
-
+ const buttonEl= document.querySelector(".buttons")
+//  const  quizzes = new Quiz ()
  function populate(){
-     if(Quiz.isEnded()){
+     if(quiz.isEnded()){
          showScores();
      }
      else {
         //  Question shown
-        var element = document.getElementById("question");
-        element.innerHTML = quiz.getQuestionsIndex().text;
+        
+      var choices = quiz.getQuestionsIndex().choices;
 
-        // SHows the other answers
-        var choices = quiz.getQuestionsIndex().choices;
-        for(var i = 0; i < choices.length; i++) {
-            var element = document.getElementById("choice" + i);
-            element.innerHTML = choices[i];
-            guess("btn" + i, choices[i]);
+        buttonEl.innerHTML = `   
+        <p id="question">${quiz.getQuestionsIndex().text}</p>
+
+        <button class="choice-btn" id="btn0"><span id="choice0">${choices[0]} </span></button>
+        <button class="choice-btn" id="btn1"><span id="choice1">${choices[1]}</span></button>
+        <button class="choice-btn" id="btn2"><span id="choice2">${choices[2]}</span></button>
+        <button class="choice-btn" id="btn3"><span id="choice3">${choices[3]}</span></button>`
+
+
+        var choiceBtnEl = document.querySelectorAll(".choice-btn")
+
+        for (let i = 0; i < choiceBtnEl.length; i++) {
+            
+            choiceBtnEl[i].addEventListener("click", function (){
+              
+                var answer= quiz.getQuestionsIndex().answer
+                if ( this.textContent === answer ) {
+                    alert("correct")
+                }
+                else {
+                    alert("incorrect")
+                }
+              
+                quiz.guess()
+                populate()
+            })
+            
         }
-        showProgress();
+
+        // var element = document.getElementById("question");
+        // element.innerHTML = quiz.getQuestionsIndex().text;
+
+        // // SHows the other answers
+  
+        // for(var i = 0; i < choices.length; i++) {
+        //     var element = document.getElementById("choice" + i);
+        //     element.innerHTML = choices[i];
+        //     quiz.guess("btn" + i, choices[i]);
+        // }
+        // showProgress();
      }
  };
 
@@ -59,18 +106,21 @@ Quiz.prototype.guess = function(answer) {
      element.innerHTML = gameOverHTML;
  }
 
-//  The actual questions
-var questions = [
-    new Question("What is the capital of Illinois?", ["Austin", "Chicago", "Springfield", "Norman"], "Springfield"),
-    new Question("How many states are in the United States?", ["25", "50", "51", "13"], "50"),
-    new Question("Which state has the highest population in the U.S.?", ["New York", "Texas", "Illinois", "California"], "California"),
-    new Question("Which of the following was the last State to join the U.S.?", ["Alaska", "Hawai'i", "Puerto Rico", "Costa Rica"], "Alaska"),
-    new Question("What is the smallest State in the U.S.?", ["New Jersey", "Delaware", "Washington D.C.", "Rhode Island"], "Rhode Island"),
-];
 
-// creating quiz
-var quiz = new Quiz(questions);
+console.log(questions)
 
+
+console.log(quiz)
+function countdown(){
+     timerEl.textContent=timer
+     timer--
+}
+    
+function init (){
+  timerId =setInterval(countdown, 1000)
 // showing the quiz
 populate();
-    
+}
+
+init()
+
