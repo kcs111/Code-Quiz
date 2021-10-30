@@ -12,7 +12,37 @@
 </head>
 
 <body>
+    <header class="mb-5 px-3 invisible">
+        <div class="row">
+            <div class="col-6">
+                <a href="#" id="view=highscores" class="purple-text">View Highscores 
+                </a>
+            </div>
+            <div class="purple-text col-6 font-weight-bold text-right">Time Left: <span id="time-left"></span></div>
+        </div>
+    </header>
     
-    
+    <main class="container justify-content-center">
+
+    <!-- The first screen -->
+    <div class="row">
+        <div class="col-12">
+            <div id="start-screen" class="text-center">
+                <h1 class="">Begin The Game</h1>
+                <button id="start-game-btn" class="btn btn-primary">Begin Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- The quiz -->
+
+    <div class="row">
+        <div class="col-12 col-md-8 col-xl-6 mx-auto ">
+            <div id="quiz-content" class="m-auto d-flex flex-column hide">
+                <h2 class="" id="question-title"></h2>
+                
+            </div>
+        </div>
+    </div>
 </body>
 </html>
