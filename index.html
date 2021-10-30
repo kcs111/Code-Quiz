@@ -40,9 +40,33 @@
         <div class="col-12 col-md-8 col-xl-6 mx-auto ">
             <div id="quiz-content" class="m-auto d-flex flex-column hide">
                 <h2 class="" id="question-title"></h2>
-                
+
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div id="post-game-screen" class="col-12 text-center hide">
+            <h2 class="">Quiz Complete</h2>
+            <p>Your Score:<span id="user-score"></span></p>
+            <form id="gamer-end-form" class="justify-content-center form-inline mx-auto " method="POST">
+                <input type="text" id="user-initals" class="form-inline form-control w-50 w-lg-25"
+                placeholder="Initials Here!">
+                <button type="submit" id="add-highscore-btn" class="form-inline btn btn-primary">Add your Highscore</button>
+  
+            </form>
+        </div>
+        <div id="high-scores-display" class="col-12 col-md-8 col-xl-6 mx-auto hide">
+            <h2 class="mx-auto text-center">High Scores:</h2>
+            <div id="high-scores-list" class="w-50 mx-auto">
+            </div>
+        </div>
+        <div id="" class="col-12 text-center">
+            <button id="play-again-btn" class="hide btn btn-primary mx-auto">Play Again?</button>
+            <button id="clear-highscore" class="hide btn btn-primary mx-auto">Clear High Scores</button>
+          </div>
+    </div>
+
+   
 </body>
 </html>
