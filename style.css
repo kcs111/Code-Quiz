@@ -1,0 +1,41 @@
+body {
+    background-color: antiquewhite;
+    color: #383838;
+}
+
+a:hover {
+    opacity: 75%;
+    color: azure;
+}
+a:active {
+    opacity: 25%;
+    color: blueviolet;
+}
+.purple-text {
+    color: black;
+}
+button {
+    background-color: burlywood!important;
+    margin: 3px;
+    border: cornsilk!important;
+    border-radius: 5px;
+}
+button:hover{
+    opacity: 75%;
+}
+
+.invisble {
+    visibility: hidden;
+}
+
+.hide{
+    display: none!important;
+}
+
+.high-score-even{
+    padding: 3px;
+}
+
+.high-score-odd{
+    padding: 3px;
+}
