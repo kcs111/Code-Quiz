@@ -1,10 +1,12 @@
 // start the game
 
+
 var startGameBtnEl = document.querySelector("#start-game-btn");
 
 var startScreenEl = document.querySelector("#start-screen");
 
 // Quiz content
+
 
 var quizScreenEl = document.querySelector("#quiz-content");
 
@@ -13,6 +15,7 @@ var headerEl = document.querySelector("header");
 var timeLeftEl = document.querySelector("#time-left");
 
 // Highscore Element
+
 
 var viewHighscoresAEl = document.querySelector("#view-highscores");
 
@@ -48,3 +51,20 @@ var gameEndFormEl = document.querySelector("#game-end-form");
 var userInitials = document.querySelector("#user-initials");
 
 var clearHighScoresBtnEl = document.querySelector("#clear-highscore");
+
+
+// Game logic begins here
+
+// timer, score, time left
+var timerIntervalId;
+
+var score;
+
+var secondsLeft;
+
+var highScoresDisplayEl = document.querySelector("#high-scores-display");
+
+var highScoresList = [];
+if (localStorage.getItem("highScoresList")){
+  highScoresList = JSON.parse(localStorage.getItem("highScoresList"));
+}

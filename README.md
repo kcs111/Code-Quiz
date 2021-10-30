@@ -18,3 +18,6 @@ made in Vs Code using
 1. HTML
 2.CSS
 3.Boostrap
+
+
+I learned a lot in this one and the most important thing was queryselector it helped me so much and once I had a better grasp it was phenominal. I hope all my projects have this kind of break through.
