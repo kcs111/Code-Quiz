@@ -23,5 +23,5 @@ var questions = [
         question: "Which state has the largest population in the U.S.?",
         choices: ["New York", "Califronia", "Texas", "Florida"],
         answer: "California"
-    },
+    }
 ]
